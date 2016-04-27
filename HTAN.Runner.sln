@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTAN.Runner", "HTAN.Runner\HTAN.Runner.csproj", "{7047347C-43C6-4DFA-B6EB-225AA7592B10}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Info", "Info", "{E6589BD4-1E1F-42A1-949F-8C037F616FE4}"
+	ProjectSection(SolutionItems) = preProject
+		CHANGELOG.md = CHANGELOG.md
+		example.conf = example.conf
+		install.sh = install.sh
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7047347C-43C6-4DFA-B6EB-225AA7592B10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7047347C-43C6-4DFA-B6EB-225AA7592B10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7047347C-43C6-4DFA-B6EB-225AA7592B10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7047347C-43C6-4DFA-B6EB-225AA7592B10}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

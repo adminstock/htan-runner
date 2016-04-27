@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="HTAN.Runner.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="AppAvailablePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">/etc/htan/app-available</Value>
+    </Setting>
+    <Setting Name="AppEnabledPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">/etc/htan/app-enabled</Value>
+    </Setting>
+    <Setting Name="LogFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)">/var/log/htan/runner.log</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

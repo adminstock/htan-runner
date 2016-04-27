@@ -1,0 +1,84 @@
+#!/bin/bash
+
+### BEGIN INIT INFO
+# Provides:           htan-runner
+# Required-Start:     $local_fs $remote_fs $network $syslog $named
+# Required-Stop:      $local_fs $remote_fs $network $syslog $named
+# Default-Start:      2 3 4 5
+# Default-Stop:       0 1 6
+# Short-Description:  Starts the HTAN.Runner via Mono
+# Description:        Starts the HTAN.Runner and FastCGI processes.
+### END INIT INFO
+
+NAME="mono" # as it runs through mono
+DESC="htan-runner"
+PID="/tmp/$NAME.pid"
+DAEMON="$(which mono)"
+DAEMON_ARGS="/usr/lib/htan-runner/HTAN.Runner.exe"
+
+. /lib/lsb/init-functions
+
+usage()
+{
+  echo "$0 (start|stop|status|restart|reload)"
+}
+
+do_stop()
+{
+  # Return
+  # 0 if daemon has been stopped
+  # 1 if daemon was already stopped
+  # 2 if daemon could not be stopped
+  # other if a failure occurred
+
+  start-stop-daemon --stop --quiet --oknodo --retry=TERM/120/KILL/5 --pidfile $PID --name $NAME --exec $DAEMON -- $DAEMON_ARGS
+  RETVAL="$?"
+  [[ "$RETVAL" == 2 ]] && return 2
+  
+  # Delete their pidfiles when they exit.
+  rm --force $PID
+  return "$RETVAL"
+}
+
+do_reload() 
+{
+  start-stop-daemon --stop --signal HUP --quiet --pidfile $PID --name $NAME
+  return 0
+}
+
+do_start()
+{
+  # Return
+  # 0 if daemon has been started
+  # 1 if daemon was already running
+  # 2 if daemon could not be started
+  start-stop-daemon --start --background --umask 0 --quiet --make-pidfile --pidfile $PID --name $NAME --exec $DAEMON --test > /dev/null || return 1
+  start-stop-daemon --start --background --umask 0 --quiet --make-pidfile --pidfile $PID --name $NAME --exec $DAEMON -- $DAEMON_ARGS 2>/dev/null || return 2
+}
+ 
+case "$1" in
+  "start")
+    echo "Starting daemon: $NAME $DESC."
+  	do_start
+    ;;
+  "stop")
+    echo -n "Stopping daemon: $NAME $DESC."
+  	do_stop
+    ;;
+  "restart")
+    echo "Restarting daemon: $NAME $DESC."
+    do_stop
+    do_start
+    ;;
+  "reload" | "force-reload")
+    echo "Reloading daemon: $NAME $DESC."
+  	do_reload
+    ;;
+  "status")
+    status_of_proc -p "$PID" "$DAEMON" "$NAME" && exit 0 || exit $?
+    ;;
+  *)
+  	usage;;
+esac
+
+exit

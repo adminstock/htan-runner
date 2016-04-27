@@ -35,7 +35,9 @@ chmod u=rx,g=rx /usr/lib/htan/installers/htan-runner
 Or installation through `install.sh`:
 
 ```bash
-install.sh
+su -l root
+chmod u=rx,g=rx ./install.sh
+./install.sh
 ```
 
 ## Uninstall
